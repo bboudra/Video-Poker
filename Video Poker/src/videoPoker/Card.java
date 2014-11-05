@@ -4,12 +4,13 @@ package videoPoker;
  * Objects represent cards in a typical
  * deck of playing cards.
  *
- * @author Dr. Jody Paul
- * @version Intermediate Programming (0)
+ * @author Ben Boudra and Jody Paul
+ * @version 1 
  */
 public class Card {
-    // INCOMPLETE - Needs instance variables
-
+	Rank rank;
+	Suit suit;
+	
     /**
      * Card constructor for the Queen of Hearts.
      */
@@ -23,7 +24,8 @@ public class Card {
      * @param cardSuit the suit for this card
      */
     public Card(final Rank cardRank, final Suit cardSuit) {
-	// INCOMPLETE
+    	rank = cardRank;
+    	suit = cardSuit;
     }
 
     /**
@@ -78,7 +80,7 @@ public class Card {
      * @return the rank of this card
      */
     public final Rank rank() {
-        return null; // INCOMPLETE
+    	return this.rank;
     }
 
     /**
@@ -86,7 +88,7 @@ public class Card {
      * @return the suit of this card
      */
     public final Suit suit() {
-        return null; // INCOMPLETE
+    	return this.suit;
     }
 
     /**
@@ -94,7 +96,7 @@ public class Card {
      * @return the ID of this card
      */
     public final int cardID() {
-        return -42; // INCOMPLETE
+    	return Card.generateCardID(this.rank, this.suit);
     }
 
     /**
@@ -115,10 +117,24 @@ public class Card {
      */
     @Override
     public final boolean equals(final Object obj) {
-        return false; // INCOMPLETE
+    	Card c = (Card) obj;
+    	boolean rankCompare = this.rank.equals(c.rank);
+    	boolean suitCompare = this.suit.equals(c.suit);
+    	if(rankCompare == true && suitCompare == true)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 
     @Override
+    /**
+     * 
+     *@return the hashCode;
+     */
     public final int hashCode() {
         return 17; // INCOMPLETE
     }
@@ -129,10 +145,12 @@ public class Card {
      * @param args ignored
      */
     public static void main(final String[] args) {
-        Card c = new Card();
-        System.out.println(c);
-        Card d = new Card(c);
-        System.out.println(d + " == " + c + " --> " + (d == c));
-        System.out.println(d + ".equals(" + c + ") --> " + d.equals(c));
+//        Card c = new Card();
+//        System.out.println(c);
+//        Card d = new Card(c);
+//        System.out.println(d + " == " + c + " --> " + (d == c));
+//        System.out.println(d + ".equals(" + c + ") --> " + d.equals(c));
+    		System.out.print(Card.generateCardID(Rank.KING, Suit.HEARTS));
+    		
     }
 }

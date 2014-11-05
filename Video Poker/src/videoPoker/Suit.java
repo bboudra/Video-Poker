@@ -35,4 +35,5 @@ public enum Suit {
     public String toString() {
         return this.suitName;
     }
+    
 }
