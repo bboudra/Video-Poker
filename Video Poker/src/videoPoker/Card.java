@@ -63,7 +63,7 @@ public class Card {
      * @return the rank associated with the given card ID
      */
     public static Rank retrieveRank(final int cardid) {
-        return null; // INCOMPLETE
+    	return findRank(cardid);
     }
 
     /**
@@ -72,7 +72,14 @@ public class Card {
      * @return the suit associated with the given card ID
      */
     public static Suit retrieveSuit(final int cardid) {
-        return null; // INCOMPLETE
+    	try
+    	{
+    	return findSuit(cardid);
+    	}
+    	catch(IndexOutOfBoundsException e)
+    	{
+    		return null;
+    	}
     }
 
     /**
@@ -138,6 +145,88 @@ public class Card {
     public final int hashCode() {
         return 17; // INCOMPLETE
     }
+    
+    	/**
+	 * utility method to find the rank of a specific card whose identity is determined by its cardID
+	 * @param cardID
+	 * @return the rank of that card
+	 */
+	public static Rank findRank(int cardID)
+	{
+		if (cardID > 51 || cardID < 0)
+		{
+			throw new IndexOutOfBoundsException("This card ID is not within the valid range of id's");
+		}
+		while (cardID > 12)
+		{
+			cardID -= 13;
+		}
+		if (cardID == 0)
+		{
+			return Rank.ACE;
+		} else if (cardID == 1)
+		{
+			return Rank.DEUCE;
+		} else if (cardID == 2)
+		{
+			return Rank.TREY;
+		} else if (cardID == 3)
+		{
+			return Rank.FOUR;
+		} else if (cardID == 4)
+		{
+			return Rank.FIVE;
+		} else if (cardID == 5)
+		{
+			return Rank.SIX;
+		} else if (cardID == 6)
+		{
+			return Rank.SEVEN;
+		} else if (cardID == 7)
+		{
+			return Rank.EIGHT;
+		} else if (cardID == 8)
+		{
+			return Rank.NINE;
+		} else if (cardID == 9)
+		{
+			return Rank.TEN;
+		} else if (cardID == 10)
+		{
+			return Rank.JACK;
+		} else if (cardID == 11)
+		{
+			return Rank.QUEEN;
+		} else 
+		{
+			return Rank.KING;
+		}
+	}
+	
+		/**
+	 * utility method to find and return the suit of a specific card as determined by its cardID
+	 * @param cardID
+	 * @return the suit of that card
+	 */
+	public static Suit findSuit(int cardID)
+	{
+		if (cardID >= 0 && cardID < 13)
+		{
+			return Suit.HEARTS;
+		} else if (cardID >= 13 && cardID < 26)
+		{
+			return Suit.CLUBS;
+		} else if (cardID >= 26 && cardID < 39)
+		{
+			return Suit.DIAMONDS;
+		} else if (cardID >= 39 && cardID < 52)
+		{
+			return Suit.SPADES;
+		} else
+		{
+			throw new IndexOutOfBoundsException("This cardID is not within the valid range of ID's");
+		}
+	}
 
     /**
      * Internal testing.

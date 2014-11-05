@@ -18,13 +18,24 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class CardTest
 {
-	private Card cardBeingTested;
+	/**
+	 * the primary card being tested, others will be used as needed.
+	 */
+	private Card cardBeingTested; 
 
+	/**
+	 * the cardTest constructor, sets the instance field for each test.
+	 * @param cardToTest
+	 */
 	public CardTest(Card cardToTest)
 	{
 		cardBeingTested = cardToTest;
 	}
 
+	/**
+	 * The parameters, supplies the card test constructors with five parameters to test each method with.
+	 * @return
+	 */
 	@Parameters
 	public static Collection<Object[]> data()
 	{
@@ -36,7 +47,10 @@ public class CardTest
 		{ new Card(Rank.ACE, Suit.SPADES) },
 		{ new Card(Rank.KING, Suit.CLUBS) } });
 	}
-
+	
+	/**
+	 * Tests to see if the <code>hashCode</code> method works as expected.
+	 */
 	@Test
 	public void testHashCode()
 	{
@@ -44,6 +58,9 @@ public class CardTest
 		assertEquals(card.hashCode(),cardBeingTested.hashCode());
 	}
 
+	/**
+	 * Tests to see if the <code>card</code> method works as expected.
+	 */
 	@Test
 	public void testCard()
 	{
@@ -52,7 +69,9 @@ public class CardTest
 		assertTrue(cardToTestAgainst.suit().equals(cardBeingTested.suit()));
 		assertTrue(cardToTestAgainst.rank().equals(cardBeingTested.rank()));
 	}
-
+	/**
+	 * Tests to see if the<code>generateCardID</code> method works as expected.
+	 */
 	@Test
 	public void testGenerateCardID()
 	{
@@ -66,20 +85,30 @@ public class CardTest
 						cardBeingTested.suit()));
 	}
 
+	/**
+	 * tests to see if the <code>retrieveRank</code> retrieves the cards rank.
+	 */
 	@Test
 	public void testRetrieveRank()
 	{
-		int testCardID = Card.generateCardID(cardBeingTested.rank(), cardBeingTested.suit());
-		assertEquals(cardBeingTested.rank(), findRank(testCardID));
+		int testCardID = this.cardBeingTested.cardID();
+		assertNotNull(Card.retrieveRank(testCardID));
+		assertEquals(this.cardBeingTested.rank(), Card.retrieveRank(testCardID));
 	}
-
+	/**
+	 * Test method to determine if the retrieveSuit method works as expected.
+	 */
 	@Test
 	public void testRetrieveSuit()
 	{
-		int testCardID = Card.generateCardID(this.cardBeingTested.rank(), this.cardBeingTested.suit());
-		assertEquals(this.cardBeingTested.suit(), findSuit(testCardID));
+		int testCardID = this.cardBeingTested.cardID();
+		assertNotNull(Card.retrieveSuit(testCardID));
+		assertEquals(this.cardBeingTested.suit(), Card.retrieveSuit(testCardID));
 	}
 
+	/**
+	 * Test method to determine that the <code>rank</code> method works as it is supposed to.
+	 */
 	@Test
 	public void testRank()
 	{
@@ -93,6 +122,9 @@ public class CardTest
 		assertTrue(cardToTestAgainst.rank().equals(cardBeingTested.rank()));
 	}
 
+	/**
+	 * Test method to determine whether the <code>suit</code> method works as it is supposed to.
+	 */
 	@Test
 	public void testSuit()
 	{
@@ -106,12 +138,18 @@ public class CardTest
 		assertTrue(cardToTestAgainst.suit().equals(cardBeingTested.suit()));
 	}
 
+	/**
+	 * Test method to detemine that the <code>cardID</code> method works as expected.
+	 */
 	@Test
 	public void testCardID()
 	{
 		assertEquals(Card.generateCardID(cardBeingTested.rank(),cardBeingTested.suit()), cardBeingTested.cardID());
 	}
 
+	/**
+	 * test method to determine whether the <code>equals</code> method works
+	 */
 	@Test
 	public void testEqualsObject()
 	{
@@ -128,7 +166,7 @@ public class CardTest
 	 * @param cardID
 	 * @return the rank of that card
 	 */
-	public Rank findRank(int cardID)
+	public static Rank findRank(int cardID)
 	{
 		if (cardID > 51 || cardID < 0)
 		{
