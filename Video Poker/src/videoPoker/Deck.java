@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 /**
  * Represents a deck of playing cards.
- * @author Dr. Jody Paul
- * @version Intermediate Programming (0)
+ * @author Ben Boudra and Dr. Jody Paul
+ * @version 1
  */
 public class Deck implements Iterable<Card> {
     /** Number of cards in a full deck. */
@@ -43,7 +43,7 @@ public class Deck implements Iterable<Card> {
      * @return the size of this deck
      */
     public final int size() {
-        return -42; // INCOMPLETE
+    	return cardList.size();
     }
 
     /**
@@ -52,7 +52,7 @@ public class Deck implements Iterable<Card> {
      * @return the card at the specified location
      */
     public final Card getCard(final int which) {
-        return null; // INCOMPLETE
+    	return cardList.get(which);
     }
 
     /**
@@ -93,6 +93,7 @@ public class Deck implements Iterable<Card> {
      */
     public final void shuffle() {
         java.util.Collections.shuffle(this.cardList);
+        System.out.println(this.showAll());
     }
 
     /**

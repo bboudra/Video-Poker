@@ -21,10 +21,11 @@ public class CardTest
 	/**
 	 * the primary card being tested, others will be used as needed.
 	 */
-	private Card cardBeingTested; 
+	private Card cardBeingTested;
 
 	/**
 	 * the cardTest constructor, sets the instance field for each test.
+	 * 
 	 * @param cardToTest
 	 */
 	public CardTest(Card cardToTest)
@@ -33,7 +34,9 @@ public class CardTest
 	}
 
 	/**
-	 * The parameters, supplies the card test constructors with five parameters to test each method with.
+	 * The parameters, supplies the card test constructors with five parameters
+	 * to test each method with.
+	 * 
 	 * @return
 	 */
 	@Parameters
@@ -47,19 +50,33 @@ public class CardTest
 		{ new Card(Rank.ACE, Suit.SPADES) },
 		{ new Card(Rank.KING, Suit.CLUBS) } });
 	}
-	
+
 	/**
-	 * Tests to see if the <code>hashCode</code> method works as expected.
+	 * Tests to see if the <code>hashCode</code> generates the same hashcode for he same card
 	 */
 	@Test
-	public void testHashCode()
+	public void testHashCodeEquality()
 	{
-		Card card = new Card(this.cardBeingTested.rank(), this.cardBeingTested.suit());
-		assertEquals(card.hashCode(),cardBeingTested.hashCode());
+		Card card = new Card(this.cardBeingTested.rank(),
+				this.cardBeingTested.suit());
+		assertEquals(card.hashCode(), cardBeingTested.hashCode());
+	}
+	
+	//TODO: generate a more comprehensive hash code test
+	
+	/**
+	 * Tests to see if the <code>card</code> constructor creates a card of rank queen and suit heart
+	 */
+	@Test
+	public void defaultCardTest()
+	{
+		Card card = new Card();
+		assertEquals(card.rank(), Rank.QUEEN);
+		assertEquals(card.suit(), Suit.HEARTS);
 	}
 
 	/**
-	 * Tests to see if the <code>card</code> method works as expected.
+	 * Tests to see if the <code>card</code> constructor successfully creates a card.
 	 */
 	@Test
 	public void testCard()
@@ -69,8 +86,9 @@ public class CardTest
 		assertTrue(cardToTestAgainst.suit().equals(cardBeingTested.suit()));
 		assertTrue(cardToTestAgainst.rank().equals(cardBeingTested.rank()));
 	}
+
 	/**
-	 * Tests to see if the<code>generateCardID</code> method works as expected.
+	 * Tests to see if the<code>generateCardID</code> generates a correct ID.
 	 */
 	@Test
 	public void testGenerateCardID()
@@ -86,7 +104,7 @@ public class CardTest
 	}
 
 	/**
-	 * tests to see if the <code>retrieveRank</code> retrieves the cards rank.
+	 * tests to see if the <code>retrieveRank</code> retrieves the cards rank using the card's id.
 	 */
 	@Test
 	public void testRetrieveRank()
@@ -95,8 +113,9 @@ public class CardTest
 		assertNotNull(Card.retrieveRank(testCardID));
 		assertEquals(this.cardBeingTested.rank(), Card.retrieveRank(testCardID));
 	}
+
 	/**
-	 * Test method to determine if the retrieveSuit method works as expected.
+	 * Test method to determine if the retrieveSuit method gets the cards suit using the cardID
 	 */
 	@Test
 	public void testRetrieveSuit()
@@ -107,7 +126,7 @@ public class CardTest
 	}
 
 	/**
-	 * Test method to determine that the <code>rank</code> method works as it is supposed to.
+	 * Test method to determine that the <code>rank</code> method returns the cards rank.
 	 */
 	@Test
 	public void testRank()
@@ -123,7 +142,7 @@ public class CardTest
 	}
 
 	/**
-	 * Test method to determine whether the <code>suit</code> method works as it is supposed to.
+	 * Test method to determine whether the <code>suit</code> returns the cards suit. 
 	 */
 	@Test
 	public void testSuit()
@@ -139,22 +158,27 @@ public class CardTest
 	}
 
 	/**
-	 * Test method to detemine that the <code>cardID</code> method works as expected.
+	 * Test method to detemine that the <code>cardID</code> returns the correct cardID fora specified card.
+	 * expected.
 	 */
 	@Test
 	public void testCardID()
 	{
-		assertEquals(Card.generateCardID(cardBeingTested.rank(),cardBeingTested.suit()), cardBeingTested.cardID());
+		assertEquals(
+				Card.generateCardID(cardBeingTested.rank(),
+						cardBeingTested.suit()), cardBeingTested.cardID());
 	}
 
 	/**
-	 * test method to determine whether the <code>equals</code> method works
+	 * test method to determine whether the <code>equals</code> method correctly
+	 * compares the two objects for equality following api specificatons.
 	 */
 	@Test
 	public void testEqualsObject()
 	{
-		Card card = new Card(Rank.ACE,Suit.HEARTS);
-		Card cardTwo = new Card(this.cardBeingTested.rank(),this.cardBeingTested.suit());
+		Card card = new Card(Rank.ACE, Suit.HEARTS);
+		Card cardTwo = new Card(this.cardBeingTested.rank(),
+				this.cardBeingTested.suit());
 		assertTrue(this.cardBeingTested.equals(cardTwo));
 		assertFalse(this.cardBeingTested.equals(card));
 		assertTrue(equals(cardTwo));
@@ -162,7 +186,9 @@ public class CardTest
 	}
 
 	/**
-	 * utility method to find the rank of a specific card whose identity is determined by its cardID
+	 * utility method to find the rank of a specific card whose identity is
+	 * determined by its cardID
+	 * 
 	 * @param cardID
 	 * @return the rank of that card
 	 */
@@ -170,7 +196,8 @@ public class CardTest
 	{
 		if (cardID > 51 || cardID < 0)
 		{
-			throw new IndexOutOfBoundsException("This card ID is not within the valid range of id's");
+			throw new IndexOutOfBoundsException(
+					"This card ID is not within the valid range of id's");
 		}
 		while (cardID > 12)
 		{
@@ -212,13 +239,16 @@ public class CardTest
 		} else if (cardID == 11)
 		{
 			return Rank.QUEEN;
-		} else 
+		} else
 		{
 			return Rank.KING;
 		}
 	}
+
 	/**
-	 * utility method to find and return the suit of a specific card as determined by its cardID
+	 * utility method to find and return the suit of a specific card as
+	 * determined by its cardID
+	 * 
 	 * @param cardID
 	 * @return the suit of that card
 	 */
@@ -238,26 +268,28 @@ public class CardTest
 			return Suit.SPADES;
 		} else
 		{
-			throw new IndexOutOfBoundsException("This cardID is not within the valid range of ID's");
+			throw new IndexOutOfBoundsException(
+					"This cardID is not within the valid range of ID's");
 		}
 	}
-	
-     /**
-     * equals method
-     *   both rank and suit must be the same.
-     * @param obj the object to compare with this card
-     */
-	public boolean equals(final Object obj) {
-    	Card c = (Card) obj;
-    	boolean rankCompare = this.cardBeingTested.rank().equals(c.rank());
-    	boolean suitCompare = this.cardBeingTested.suit().equals(c.suit());
-    	if(rankCompare == true && suitCompare == true)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
-    }
+
+	/**
+	 * equals method both rank and suit must be the same.
+	 * 
+	 * @param obj
+	 *            the object to compare with this card
+	 */
+	public boolean equals(final Object obj)
+	{
+		Card c = (Card) obj;
+		boolean rankCompare = this.cardBeingTested.rank().equals(c.rank());
+		boolean suitCompare = this.cardBeingTested.suit().equals(c.suit());
+		if (rankCompare == true && suitCompare == true)
+		{
+			return true;
+		} else
+		{
+			return false;
+		}
+	}
 }
