@@ -49,7 +49,11 @@ public class Hand implements Iterable<Card> {
      * @param start the starting index of cards in the deck
      */
     public Hand(final Deck fromDeck, final int start) {
-	// INCOMPLETE
+    	while(start > 0)
+    	{
+    		handList.add(fromDeck.deal());
+    		start--;
+    	}
     }
 
     /**
