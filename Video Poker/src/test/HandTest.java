@@ -39,7 +39,7 @@ public class HandTest
 		deckUnshuffled = new Deck();
 		deckShuffled = new Deck(deckUnshuffled);
 		deckShuffled.shuffle();
-		decodedHand = new Hand(844789389);
+		decodedHand = new Hand(862815373);
 	}
 
 	/**
@@ -81,9 +81,9 @@ public class HandTest
 	@Test
 	public void testHandLongAndEncode()
 	{
-		Hand longHand = new Hand(844789389);
-		assertEquals(844789389, longHand.encode());
-		Hand secondDecodedHand = new Hand(844789389);
+		Hand longHand = new Hand(862815373);
+		assertEquals(862815373, longHand.encode());
+		Hand secondDecodedHand = new Hand(862815373);
 		assertTrue(handEqualityTest(longHand, decodedHand));
 	}
 
@@ -108,7 +108,7 @@ public class HandTest
 	@Test
 	public void testEqualsObject()
 	{
-		assertTrue(handEqualityTest(new Hand(844789389), decodedHand));
+		assertTrue(handEqualityTest(new Hand(862815373), decodedHand));
 	}
 
 	/**

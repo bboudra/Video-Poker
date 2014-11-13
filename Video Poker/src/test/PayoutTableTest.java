@@ -74,7 +74,7 @@ public class PayoutTableTest
 	{
 		PayoutTable pt = new PayoutTable();
 		pt.putPayout(Quality.THREEKIND, 5);
-		assertEquals(Quality.THREEKIND, pt.getPayout(Quality.THREEKIND));
+		assertEquals(5 , pt.getPayout(Quality.THREEKIND));
 	}
 
 	/**
