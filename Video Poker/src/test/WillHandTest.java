@@ -126,7 +126,7 @@ public class WillHandTest
     public void HandSetGetCardTest() {
         Deck deck = new Deck();
         Hand hand = new Hand(deck);
-        Card cardone = new Card(Rank.NINE,Suit.CLUBS);
+        Card cardone = hand.getCard(3);
         hand.setCard(0,cardone);
         Card cardtwo = hand.getCard(0);
         assertEquals(cardone.toString(), cardtwo.toString());

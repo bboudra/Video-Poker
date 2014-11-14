@@ -333,7 +333,7 @@ public class Hand implements Iterable<Card>
 				if (handList.get(d).rank.ordinal() > handList.get(d + 1).rank
 						.ordinal()) /* For descending order use < */
 				{
-					handList.set(d, handList.get(d + 1));
+					this.setCard(d, handList.get(d+1));
 				}
 			}
 		}

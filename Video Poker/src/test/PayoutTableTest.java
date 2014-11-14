@@ -37,7 +37,21 @@ public class PayoutTableTest
 		pt.putPayout(Quality.SPECIAL1, 25);
 		pt.putPayout(Quality.SPECIAL2, 25);
 
-		pt2
+		PayoutTable pt2 = PayoutTable.payoutTable85();
+		assertTrue(pt.getPayout(Quality.BUPKIS) == pt2.getPayout(Quality.BUPKIS));
+		assertTrue(pt.getPayout(Quality.LOWPAIR) == pt2.getPayout(Quality.LOWPAIR));
+		assertTrue(pt.getPayout(Quality.HIGHPAIR) == pt2.getPayout(Quality.HIGHPAIR));
+		assertTrue(pt.getPayout(Quality.TWOPAIR) == pt2.getPayout(Quality.TWOPAIR));
+		assertTrue(pt.getPayout(Quality.THREEKIND) == pt2.getPayout(Quality.THREEKIND));
+		assertTrue(pt.getPayout(Quality.STRAIGHT) == pt2.getPayout(Quality.STRAIGHT));
+		assertTrue(pt.getPayout(Quality.FLUSH) == pt2.getPayout(Quality.FLUSH));
+		assertTrue(pt.getPayout(Quality.FULLHOUSE) == pt2.getPayout(Quality.FULLHOUSE));
+		assertTrue(pt.getPayout(Quality.FOURKIND) == pt2.getPayout(Quality.FOURKIND));
+		assertTrue(pt.getPayout(Quality.STRAIGHTFLUSH) == pt2.getPayout(Quality.STRAIGHTFLUSH));
+		assertTrue(pt.getPayout(Quality.ROYALFLUSH) == pt2.getPayout(Quality.ROYALFLUSH));
+		assertTrue(pt.getPayout(Quality.SPECIAL1) == pt2.getPayout(Quality.SPECIAL1));
+		assertTrue(pt.getPayout(Quality.SPECIAL2) == pt2.getPayout(Quality.SPECIAL2));
+		
 	}
 
 	/**
