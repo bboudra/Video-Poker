@@ -62,7 +62,10 @@ public class PayoutTable {
      *  @param  pays  Corresponding payout multipliers 
      */
     public PayoutTable(Quality[] quals, int[] pays) {
-	// INCOMPLETE
+    	for(int i = 0; i < quals.length; i++)
+    	{
+    		this.payouts.put(quals[i], pays[i]);
+    	}
     }
 
     /**
@@ -71,7 +74,7 @@ public class PayoutTable {
      * @param multiplier the payout multiplier for the associated hand quality
      */
     public final void putPayout(Quality quality, int multiplier) {
-	// INCOMPLETE
+    	this.payouts.put(quality, multiplier);
     }
 
     /**
@@ -81,7 +84,7 @@ public class PayoutTable {
      *          or <code>null</code> if no payout for the quality
      */
     public int getPayout(Quality quality) {
-	// INCOMPLETE
+    	return this.payouts.get(quality);
     }
 
     /**
@@ -91,7 +94,6 @@ public class PayoutTable {
     public final Map<Quality, Integer> table() {
         return this.payouts;
     }
-
     @Override
     public String toString() {
         String result = "";
@@ -100,4 +102,6 @@ public class PayoutTable {
         }
         return result;
     }
+    
+    
 }

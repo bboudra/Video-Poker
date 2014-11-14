@@ -120,8 +120,7 @@ public class Hand implements Iterable<Card>
 		int hashValue = 0;
 		for (int i = 0; i < handList.size(); i++)
 		{
-			Integer current = handList.get(i).cardID();
-			hashValue += current.hashCode();
+			hashValue +=handList.get(i).hashCode();
 		}
 		return hashValue;
 	}
@@ -198,17 +197,25 @@ public class Hand implements Iterable<Card>
 	 */
 	public final long encode()
 	{
-		long encoding;
+		long encoding = 0;
 		for(int i = 0; i < handList.size(); i++)
 		{
-			handList.get(i).cardID() * Math.pow(arg0, arg1)
+			encoding += handList.get(i).cardID() * Math.pow(64, i);
 		}
+		
+		return encoding;
 	}
 
 	@Override
 	public final String toString()
 	{
-		return ""; // INCOMPLETE
+		StringBuilder sB = new StringBuilder();
+		for(Card c: handList)
+		{
+			sB.append(c.toString() + "   ");
+		}
+		String handString = sB.toString();
+		return handString;
 	}
 
 	/**
@@ -255,20 +262,36 @@ public class Hand implements Iterable<Card>
 //	}
 	public static void main(String[] args)
 	{
-		Hand hand = new Hand(862815373);
+		Hand hand = new Hand(425308228);
 	}
 
 	private int[] decoder(Long encoding)
 	{
 		int[] decodedIDs = new int[5];
 		String str = Long.toBinaryString(encoding);
+		StringBuilder strB = new StringBuilder(str);
+		str = strB.reverse().toString();
 		for (int i = 0; i < 5; i++)
 		{
-			int location = i * 5;
-			int endLocation = location + 5;
-			String id = str.substring(location, endLocation);
+			int location = i * 6;
+			int endLocation = location + 6;
+			String id;
+			if(endLocation < str.length())
+			{
+			id = str.substring(location, endLocation);
+			StringBuilder idB = new StringBuilder(id);
+			id = idB.reverse().toString();
+			}
+			else
+			{
+			id = str.substring(location, str.length());
+			StringBuilder idB = new StringBuilder(id);
+			id = idB.reverse().toString();
+			}
 			int base = 2;
+			
 			decodedIDs[i] = Integer.parseInt(id, base);
+			
 		}
 		return decodedIDs;
 	}

@@ -93,10 +93,10 @@ public class DeckTest
 	{
 		Card card = deck.getCard(27);
 		Card card2 = deck.getCard(13);
-
-		deck.setCard(13, card);
-		assertEquals(card, deck.getCard(13));
-		assertEquals(card2, deck.getCard(27));
+		Card cardSwitched = deck.setCard(13, card);
+		assertTrue(cardSwitched.equals(deck.getCard(13)));
+		assertTrue(card.equals(deck.getCard(13)));
+		assertTrue(card2.equals(deck.getCard(27)));
 	}
 
 	/***

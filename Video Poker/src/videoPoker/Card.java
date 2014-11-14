@@ -143,7 +143,8 @@ public class Card {
      *@return the hashCode;
      */
     public final int hashCode() {
-        return 17; // INCOMPLETE
+    	Integer hashValue = this.cardID();
+    	return hashValue.hashCode();
     }
     
     	/**
@@ -239,7 +240,16 @@ public class Card {
 //        Card d = new Card(c);
 //        System.out.println(d + " == " + c + " --> " + (d == c));
 //        System.out.println(d + ".equals(" + c + ") --> " + d.equals(c));
-    		System.out.print(Card.generateCardID(Rank.KING, Suit.HEARTS));
-    		
+    		//System.out.print(Card.generateCardID(Rank.KING, Suit.HEARTS));
+    	Card card1 = new Card(Rank.FIVE,Suit.HEARTS);
+    	System.out.println(card1.cardID());
+    	Card card2 = new Card(Rank.DEUCE,Suit.HEARTS);
+    	System.out.println(card2.cardID());
+    	Card card3 = new Card(Rank.DEUCE,Suit.DIAMONDS);
+    	System.out.println(card3.cardID());
+    	Card card4 = new Card(Rank.TEN, Suit.CLUBS);
+    	System.out.println(card4.cardID());
+    	Card card5 = new Card(Rank.KING, Suit.CLUBS);
+    	System.out.println(card5.cardID());
     }
 }

@@ -37,7 +37,7 @@ public class PayoutTableTest
 		pt.putPayout(Quality.SPECIAL1, 25);
 		pt.putPayout(Quality.SPECIAL2, 25);
 
-		assertTrue(pt.equals(PayoutTable.payoutTable85()));
+		pt2
 	}
 
 	/**
@@ -61,7 +61,9 @@ public class PayoutTableTest
 		pt.putPayout(Quality.HIGHPAIR, 20);
 
 		PayoutTable pt2 = new PayoutTable(qual, payDay);
-		assertTrue(pt.equals(pt2));
+		assertTrue(pt.getPayout(Quality.BUPKIS) == pt2.getPayout(Quality.BUPKIS));
+		assertTrue(pt.getPayout(Quality.LOWPAIR) ==pt2.getPayout(Quality.LOWPAIR));
+		assertTrue(pt.getPayout(Quality.HIGHPAIR) == pt2.getPayout(Quality.HIGHPAIR));
 
 	}
 
@@ -94,8 +96,6 @@ public class PayoutTableTest
 		pt.putPayout(Quality.BUPKIS, 0);
 		pt.putPayout(Quality.LOWPAIR, 1);
 		pt.putPayout(Quality.HIGHPAIR, 2);
-
 		assertEquals(map, pt.table());
 	}
-
 }
