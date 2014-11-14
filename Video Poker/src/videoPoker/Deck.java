@@ -16,7 +16,6 @@ public class Deck implements Iterable<Card>
 	public static final int DECK_SIZE = Suit.values().length
 			* Rank.values().length;
 
-	// INCOMPLETE - May need additional instance variables
 
 	/** List of cards in this deck. */
 	private List<Card> cardList = new ArrayList<Card>(DECK_SIZE);
@@ -100,7 +99,11 @@ public class Deck implements Iterable<Card>
 		}
 		return cardList.get(which);
 	}
-
+	/**
+	 * returns an iterator of the cards over the deck
+	 * 
+	 * @return the iterator of the cards over the deck.
+	 */
 	@Override
 	public final Iterator<Card> iterator()
 	{
@@ -163,7 +166,12 @@ public class Deck implements Iterable<Card>
 		localDeck.shuffle();
 		System.out.println("Shuffled.  Top card: " + localDeck.getCard(0));
 	}
-
+	
+	/**
+	 * Utility find the location of a card within the deck.
+	 * @param cardToGet
+	 * @return
+	 */
 	private int getCardLocation(Card cardToGet)
 	{
 		for (int i = 0; i < cardList.size(); i++)

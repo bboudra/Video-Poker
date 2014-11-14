@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.EnumMap;
 /**
  * Establishes a payoff table associated with hand qualities.
- * @author Dr. Jody Paul
- * @version Intermediate Programming (0)
+ * @author Dr. Jody Paul and Benjamin Boudra
+ * @version 1
  */
 public class PayoutTable {
     /** Maximum number of elements in a PayoutTable. */
@@ -81,10 +81,17 @@ public class PayoutTable {
      * Retrieves the appropriate payout for a specified quality.
      *  @param  quality the quality to look up
      *  @return the payout multiplier associated with the quality,
-     *          or <code>null</code> if no payout for the quality
+     *          or 0 if no payout for the quality
      */
     public int getPayout(Quality quality) {
-    	return this.payouts.get(quality);
+    	if(this.payouts.get(quality) != null)
+    	{
+    		return this.payouts.get(quality);
+    	}
+    	else
+    	{
+    		return 0;
+    	}
     }
 
     /**

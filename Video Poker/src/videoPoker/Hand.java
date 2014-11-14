@@ -7,8 +7,8 @@ import java.util.Iterator;
 /**
  * A poker hand made of cards.
  * 
- * @author Dr. Jody Paul
- * @version Intermediate Programming (0)
+ * @author Dr. Jody Paul and Benjamin Boudra
+ * @version 1
  */
 public class Hand implements Iterable<Card>
 {
@@ -93,7 +93,10 @@ public class Hand implements Iterable<Card>
 			handList.add(card);
 		}
 	}
-
+	/**
+	 * Returns and iterator of the cards to the user.
+	 * @return the card iterator
+	 */
 	@Override
 	public final Iterator<Card> iterator()
 	{
@@ -101,6 +104,11 @@ public class Hand implements Iterable<Card>
 		return cardIterator;
 	}
 
+	/**
+	 * Compares two objects to see if they are equal.
+	 * @param obj the hand being tested against the current hand.
+	 * @return <code>true</code> if equal <code>false</code> if not.
+	 */
 	@Override
 	public final boolean equals(final Object obj)
 	{
@@ -113,7 +121,11 @@ public class Hand implements Iterable<Card>
 			return false;
 		}
 	}
-
+	
+	/**
+	 * Generates a hash code from the hand.
+	 * @return the hash code.
+	 */
 	@Override
 	public final int hashCode()
 	{
@@ -205,7 +217,11 @@ public class Hand implements Iterable<Card>
 		
 		return encoding;
 	}
-
+	/**
+	 * renders the hand as a string.
+	 * 
+	 * @return the hand as a string.
+	 */
 	@Override
 	public final String toString()
 	{
@@ -265,6 +281,11 @@ public class Hand implements Iterable<Card>
 		Hand hand = new Hand(425308228);
 	}
 
+	/**
+	 * decodes the encoded hand and returns the hand as a set of cardID's to the caller.
+	 * @param encoding the encoded hand
+	 * @return the decoded hand
+	 */
 	private int[] decoder(Long encoding)
 	{
 		int[] decodedIDs = new int[5];
@@ -295,7 +316,12 @@ public class Hand implements Iterable<Card>
 		}
 		return decodedIDs;
 	}
-
+	/**
+	 * checks to see if the two hands are equal.
+	 * @param hand1 the first hand being compared
+	 * @param hand2 the second hand being compared
+	 * @return true if they are equal, false if they are not.
+	 */
 	private boolean equalityTest(Hand hand1, Hand hand2)
 	{
 		boolean equality = true;
@@ -308,7 +334,11 @@ public class Hand implements Iterable<Card>
 		}
 		return equality;
 	}
-
+	/**
+	 * finds the location of a card within the hand.
+	 * @param cardToGet the card whose location we are trying to find.
+	 * @return the location of the card
+	 */
 	private int getCardLocation(Card cardToGet)
 	{
 		for (int i = 0; i < handList.size(); i++)
@@ -322,6 +352,9 @@ public class Hand implements Iterable<Card>
 		return -1;
 	}
 
+	/**
+	 * A Method that performs a bubble sort on the current hand to order it by rank.
+	 */
 	private void bubbleSortRank()
 	{
 		int c;

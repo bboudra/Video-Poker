@@ -57,9 +57,9 @@ public class WillPayoutTableTest
        PayoutTable pt = new PayoutTable();
        try{
            int payout = pt.getPayout(Quality.FULLHOUSE);
-           assertEquals(null,payout);
+           assertEquals(0,payout);
            payout = pt.getPayout(Quality.ROYALFLUSH);
-           assertEquals(null,payout);
+           assertEquals(0,payout);
         } catch(NullPointerException npe) {}
     }
  

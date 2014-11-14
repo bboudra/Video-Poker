@@ -137,11 +137,11 @@ public class Card {
     	}
     }
 
-    @Override
     /**
-     * 
+     * Generates a hashCode using the currend card's <code>cardID</code>.
      *@return the hashCode;
      */
+    @Override
     public final int hashCode() {
     	Integer hashValue = this.cardID();
     	return hashValue.hashCode();
@@ -152,7 +152,7 @@ public class Card {
 	 * @param cardID
 	 * @return the rank of that card
 	 */
-	public static Rank findRank(int cardID)
+	private static Rank findRank(int cardID)
 	{
 		if (cardID > 51 || cardID < 0)
 		{
@@ -209,7 +209,7 @@ public class Card {
 	 * @param cardID
 	 * @return the suit of that card
 	 */
-	public static Suit findSuit(int cardID)
+	private static Suit findSuit(int cardID)
 	{
 		if (cardID >= 0 && cardID < 13)
 		{
