@@ -93,7 +93,6 @@ public class Deck implements Iterable<Card> {
      */
     public final void shuffle() {
         java.util.Collections.shuffle(this.cardList);
-        System.out.println(this.showAll());
     }
 
     /**

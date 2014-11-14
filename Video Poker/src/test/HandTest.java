@@ -28,6 +28,7 @@ public class HandTest
 	Card card;
 	Hand decodedHand;
 	Deck deckUnshuffled;
+	Hand standardTestHand;
 
 	/**
 	 * sets up all of the assignments before the class runs.
@@ -40,6 +41,7 @@ public class HandTest
 		deckShuffled = new Deck(deckUnshuffled);
 		deckShuffled.shuffle();
 		decodedHand = new Hand(862815373);
+		standardTestHand = buildStandardTestHand();
 	}
 
 	/**
@@ -117,7 +119,7 @@ public class HandTest
 	@Test
 	public void testGetCard()
 	{
-		assertEquals(new Card(Rank.ACE,Suit.CLUBS), hand.getCard(13));
+		assertEquals(new Card(Rank.FIVE,Suit.HEARTS), hand.getCard(4));
 	}
 
 	/**
@@ -126,8 +128,12 @@ public class HandTest
 	@Test
 	public void testSetCard()
 	{
-		hand.setCard(10, new Card(Rank.ACE,Suit.CLUBS));
-		assertEquals(new Card(Rank.ACE, Suit.CLUBS), hand.getCard(10));
+		Card assertCard = hand.getCard(2);
+		Card swappedCard = hand.getCard(4);
+		hand.setCard(4, assertCard);
+		assertEquals(assertCard, hand.getCard(4));
+		assertEquals(swappedCard, hand.getCard(2));
+		
 	}
 
 	/**
@@ -178,6 +184,14 @@ public class HandTest
 			return true;
 		
 		}
+	}
+	
+	public Hand buildStandardTestHand()
+	{
+		Deck deck = new Deck();
+		deck.shuffle();
+		Hand standardHand = new Hand(deck);
+		return standardHand;
 	}
 
 }
