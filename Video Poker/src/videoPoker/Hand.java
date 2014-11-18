@@ -166,18 +166,7 @@ public class Hand implements Iterable<Card>
 	 */
 	public final void setCard(final int which, final Card newCard)
 	{
-		int loc = getCardLocation(newCard);
-		if (loc == -1)
-		{
-			Exception e = new Exception(
-					"the specified object is not in the list");
-			e.printStackTrace();
-		} else
-		{
-			Card cardToSwapWithNewCard = handList.get(which);
 			handList.set(which, newCard);
-			handList.set(loc, cardToSwapWithNewCard);
-		}
 	}
 
 	/**
